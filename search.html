@@ -8,6 +8,7 @@
 <!-- <link href="assets/css/bootstrap.css"> -->
 <link href="css/bootstrap-3.3.7.css" rel="stylesheet" type="text/css">
 <link href="assets/css/search.css" rel="stylesheet" type="text/css">
+<script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
 </head>
 
 <body>
@@ -25,17 +26,26 @@
   	Search Form
   </div>
 </div>
+<br>
 <div>
-  <div class="input-group"><span id="addon1" class="input-group-addon">@</span>
-    <input type="text" class="form-control" placeholder="normal sized input group" aria-describedby="addon1">
+  <div class="input-group"> 
+    <input type="text" class="form-control" placeholder="Enter Search Term" aria-describedby="addon1">
   </div>
+  <br>
   <div class="input-group">
-    <input type="text" class="form-control" placeholder="placeholder content" aria-describedby="contentaddon1">
-    <span id="contentaddon1" class="input-group-addon">@example.com</span></div>
-  <div class="input-group"><span class="input-group-addon">$</span>
-    <input type="text" class="form-control" placeholder="placeholder content">
-    <span class="input-group-addon">.00</span></div>
+    <input type="text" class="form-control" placeholder="Number of Articles to Retrieve" aria-describedby="contentaddon1">
+    </div>
+    <br>
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="Start Year">
+    </div>
 </div>
+<br>
+<div class="input-group">
+    <input type="text" class="form-control" placeholder="End Year
+    ">
+    </div>
+<br>
 <button type="button" class="btn btn-primary">Search</button>
 <button type="button" class="btn btn-primary">Clear</button>
 </div>
