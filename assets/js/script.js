@@ -11,7 +11,7 @@ function search() {
 	startYear = 2000;
 	endYear = 2007;
 
-	// // Real Code to fetch
+	// // Real Code to fetch  <--- Uncomment and replace "*****" values with target divs from HTML
 	// searchTerm = $(" ***** ").text();
 	// numRecords = parseInt($(" ***** ").val());
 	// startYear = $(" ***** ").html();
@@ -32,15 +32,13 @@ function search() {
 		'end_date': endYear + "0101"
 	});
 
-	// ***** TEST *****
-	console.log(url);
-
 	$.ajax({
 		url: url,
 		method: "GET"
 	}).done(function(response){
 		
 		// ***** TEST *****
+		// <--- Need to replace with div creation iteration (loop through response object)
 		console.log(response);
 
 	}).fail(function(err) {
@@ -52,6 +50,9 @@ function search() {
 
 function clear() {
 
+	// Clear result content divs   <---  ***** Need to Code *****
+
 }
+
 
 search();
