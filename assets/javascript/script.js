@@ -6,7 +6,7 @@ var endYear = "";
 
 function search() {
 	// ***** TEST *****
-	searchTerm = "Shrek";
+	searchTerm = "Horses";
 	numRecords = 5;
 	startYear = 2000;
 	endYear = 2007;
@@ -48,26 +48,36 @@ function search() {
 
 			for (i=0; i<objectDiv.docs.length; i++) {
 
+				// creates an html element for each return query
 				var articleDiv = $("<div class='well'>");
 
+				// appends gray boxes for each return query
 				$("#topArticles").append(articleDiv);
 
-				// console.log(objectDiv.docs[i].headline.main);
+				// creates an array of each parameter to query
+				var returnParams = [
 
+					$("<p>").html(objectDiv.docs[i].headline.main),
+					$("<p>").html(objectDiv.docs[i].source),
+					$("<p>").html(objectDiv.docs[i].pub_date),
+					$("<p>").html(objectDiv.docs[i].web_url),
+					
+					]
+	
+				// logging results
 				console.log(objectDiv.docs[i].headline.main);
 				console.log(objectDiv.docs[i].source);
 				console.log(objectDiv.docs[i].pub_date);
 				console.log(objectDiv.docs[i].web_url);
 				console.log("_________");
 
-				var title = $("<p>").text(objectDiv.docs[i].headline.main);
-				// var source =$("<p>").text(objectDiv.docs[i].source);
-
-
-				$(".well").append(title);
-				// $(".well").append(source);
 
 			} 
+
+				// pushes results to individual divs
+				// can't figure out how to populate each div with different data
+				$(".well").append(returnParams);
+
 
 
 	}).fail(function(err) {
