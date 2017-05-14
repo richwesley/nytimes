@@ -6,7 +6,7 @@ var endYear = "";
 
 function search() {
 	// ***** TEST *****
-	searchTerm = "Dogs";
+	searchTerm = "Shrek";
 	numRecords = 5;
 	startYear = 2000;
 	endYear = 2007;
@@ -24,6 +24,8 @@ function search() {
 	var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
 	var pages = Math.ceil(numRecords/10);
 
+
+
 	url += '?' + $.param({
 		'api-key': "20221c5d00e0410eb508015a63098539",
 		'q': searchTerm,
@@ -40,6 +42,33 @@ function search() {
 		// ***** TEST *****
 		// <--- Need to replace with div creation iteration (loop through response object)
 		console.log(response);
+			
+
+			var objectDiv = response.response;
+
+			for (i=0; i<objectDiv.docs.length; i++) {
+
+				var articleDiv = $("<div class='well'>");
+
+				$("#topArticles").append(articleDiv);
+
+				// console.log(objectDiv.docs[i].headline.main);
+
+				console.log(objectDiv.docs[i].headline.main);
+				console.log(objectDiv.docs[i].source);
+				console.log(objectDiv.docs[i].pub_date);
+				console.log(objectDiv.docs[i].web_url);
+				console.log("_________");
+
+				var title = $("<p>").text(objectDiv.docs[i].headline.main);
+				// var source =$("<p>").text(objectDiv.docs[i].source);
+
+
+				$(".well").append(title);
+				// $(".well").append(source);
+
+			} 
+
 
 	}).fail(function(err) {
  		throw err;
@@ -48,7 +77,20 @@ function search() {
 
 }
 
+// click button functionality
+
+	$("#search").on("click", function() {
+		// alert("search");
+		search();
+	});
+
+	$("#clear").on("click", function() {
+		// alert("clear");
+		clear();
+	});
+
 function clear() {
+	$("#topArticles").html('');
 
 	// Clear result content divs   <---  ***** Need to Code *****
 
