@@ -5,11 +5,21 @@ var endYear = "";
 
 
 function search() {
-	// ***** TEST *****
-	searchTerm = "Horses";
-	numRecords = 5;
-	startYear = 2000;
-	endYear = 2007;
+
+	// $( "div.demo-container" ).text()
+
+	// ***** DUMMY VARIABLES *****
+	// searchTerm = "Dogs";
+	// numRecords = 5;
+	// startYear = 2000;
+	// endYear = 2007;
+
+	// grabs inputs from text boxes
+	searchTerm = $("#searchInput").val().trim();
+	numRecords = $("#numRecords").val().trim();
+	parseInt(numRecords);
+	startYear = $("#startYear").val().trim();
+	endYear = $("#endYear").val().trim();
 
 	// // Real Code to fetch  <--- Uncomment and replace "*****" values with target divs from HTML
 	// searchTerm = $(" ***** ").text();
@@ -38,15 +48,22 @@ function search() {
 		url: url,
 		method: "GET"
 	}).done(function(response){
+
+		console.log(response);
 		
 		// ***** TEST *****
 		// <--- Need to replace with div creation iteration (loop through response object)
-		console.log(response);
-			
 
 			var objectDiv = response.response;
 
 			for (i=0; i<objectDiv.docs.length; i++) {
+
+				// logging results
+				console.log(objectDiv.docs[i].headline.main);
+				console.log(objectDiv.docs[i].source);
+				console.log(objectDiv.docs[i].pub_date);
+				console.log(objectDiv.docs[i].web_url);
+				console.log("_________");
 
 				// creates an html element for each return query
 				var articleDiv = $("<div class='well'>");
@@ -57,27 +74,17 @@ function search() {
 				// creates an array of each parameter to query
 				var returnParams = [
 
-					$("<p>").html(objectDiv.docs[i].headline.main),
-					$("<p>").html(objectDiv.docs[i].source),
+					$("<p>").html("<h2>" + objectDiv.docs[i].headline.main),
+					$("<p>").html("<h4>" + objectDiv.docs[i].source),
 					$("<p>").html(objectDiv.docs[i].pub_date),
-					$("<p>").html(objectDiv.docs[i].web_url),
+					$("<p>").html("<a href>" + objectDiv.docs[i].web_url),
 					
 					]
-	
-				// logging results
-				console.log(objectDiv.docs[i].headline.main);
-				console.log(objectDiv.docs[i].source);
-				console.log(objectDiv.docs[i].pub_date);
-				console.log(objectDiv.docs[i].web_url);
-				console.log("_________");
 
+					// pushes results to individual divs
+					$(articleDiv).html(returnParams);
 
 			} 
-
-				// pushes results to individual divs
-				// can't figure out how to populate each div with different data
-				$(".well").append(returnParams);
-
 
 
 	}).fail(function(err) {
@@ -87,11 +94,14 @@ function search() {
 
 }
 
+
 // click button functionality
 
-	$("#search").on("click", function() {
+	$("#search").on("click", function(event) {
 		// alert("search");
+		// event.preventDefault();
 		search();
+
 	});
 
 	$("#clear").on("click", function() {
@@ -99,12 +109,12 @@ function search() {
 		clear();
 	});
 
+
+// clears result div
 function clear() {
 	$("#topArticles").html('');
-
-	// Clear result content divs   <---  ***** Need to Code *****
 
 }
 
 
-search();
+// search();
