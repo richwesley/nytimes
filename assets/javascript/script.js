@@ -1,5 +1,5 @@
 var searchTerm = "";
-var numRecords;
+var numRecords = 0;
 var startYear = "";
 var endYear = "";
 
@@ -117,6 +117,14 @@ function search() {
 
 // clears result div
 function clear() {
+
+	// resets values
+	searchTerm = "";
+	numRecords = 0;
+	startYear = "";
+	endYear = "";
+
+	// changes html
 	$("#topArticles").html('');
 
 }
