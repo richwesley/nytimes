@@ -1,5 +1,5 @@
 var searchTerm = "";
-var numRecords = 0;
+var numRecords;
 var startYear = "";
 var endYear = "";
 
@@ -16,10 +16,17 @@ function search() {
 
 	// grabs inputs from text boxes
 	searchTerm = $("#searchInput").val().trim();
+
+	// this does nothing /////
 	numRecords = $("#numRecords").val().trim();
 	parseInt(numRecords);
+	////////
+	
+	// working
 	startYear = $("#startYear").val().trim();
+	// parseInt(startYear);
 	endYear = $("#endYear").val().trim();
+	// parseInt(endYear);
 
 	// // Real Code to fetch  <--- Uncomment and replace "*****" values with target divs from HTML
 	// searchTerm = $(" ***** ").text();
@@ -32,7 +39,7 @@ function search() {
 	// console.log(endYear);
 
 	var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
-	var pages = Math.ceil(numRecords/10);
+	var pages = numRecords;
 
 
 
@@ -60,48 +67,46 @@ function search() {
 
 				// logging results
 				console.log(objectDiv.docs[i].headline.main);
-				console.log(objectDiv.docs[i].source);
+				// console.log(objectDiv.docs[i].source);
+				console.log(objectDiv.docs[i].byline.original);
 				console.log(objectDiv.docs[i].pub_date);
 				console.log(objectDiv.docs[i].web_url);
 				console.log("_________");
 
 				// creates an html element for each return query
-				var articleDiv = $("<div class='well'>");
+				var articlesDiv = $("<div class='well'>");
 
 				// appends gray boxes for each return query
-				$("#topArticles").append(articleDiv);
+				$("#topArticles").append(articlesDiv);
 
 				// creates an array of each parameter to query
 				var returnParams = [
 
 					$("<p>").html("<h2>" + objectDiv.docs[i].headline.main),
-					$("<p>").html("<h4>" + objectDiv.docs[i].source),
+					$("<p>").html("<h4>" + objectDiv.docs[i].byline.original),
 					$("<p>").html(objectDiv.docs[i].pub_date),
 					$("<p>").html("<a href>" + objectDiv.docs[i].web_url),
+					// $("<p>").attr("href", objectDiv.docs[i].web_url),
 					
 					]
 
 					// pushes results to individual divs
-					$(articleDiv).html(returnParams);
-
+					$(articlesDiv).html(returnParams);
 			} 
-
 
 	}).fail(function(err) {
  		throw err;
 	});
 
-
 }
-
 
 // click button functionality
 
 	$("#search").on("click", function(event) {
 		// alert("search");
 		// event.preventDefault();
+		clear();
 		search();
-
 	});
 
 	$("#clear").on("click", function() {
