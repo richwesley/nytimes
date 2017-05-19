@@ -6,6 +6,7 @@ var endYear = "";
 
 function search() {
 
+	// event.preventDefault();
 	// $( "div.demo-container" ).text()
 
 	// ***** DUMMY VARIABLES *****
@@ -104,7 +105,7 @@ function search() {
 
 	$("#search").on("click", function(event) {
 		// alert("search");
-		// event.preventDefault();
+		// this.preventDefault(event);
 		clear();
 		search();
 	});
